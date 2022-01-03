@@ -1,3 +1,4 @@
+name: NPM
 on: push
 
 jobs:
