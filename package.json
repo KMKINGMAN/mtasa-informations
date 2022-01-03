@@ -1,0 +1,20 @@
+{
+  "name": "mtasa-informations",
+  "version": "1.0.0",
+  "description": "the package makes it easy for you to search for mta sa servers",
+  "main": "scr/index.js",
+  "scripts": {
+    "start": "node scr/index.js",
+    "dev": "nodemon scr/index.js"
+  },
+  "keywords": ["kmcodes", "mtasa", "status"],
+  "author": "muhammad rafat kurkar [+962792914245]",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "discord.js": "^13.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
