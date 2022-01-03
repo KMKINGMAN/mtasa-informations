@@ -1,6 +1,6 @@
 /**
- * @discord_support_server https://discord.gg/kmcodes
- * @github https://github.com/kmcodes
+ * @discord_support_server https://discord.gg/kingmandev
+ * @github https://github.com/KMKINGMAN | https://github.com/KMCodes-Developers
  * @dev_number +962792914245
  * @info all rights are save
  */
