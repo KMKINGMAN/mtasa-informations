@@ -11,8 +11,7 @@
   "author": "muhammad rafat kurkar [+962792914245]",
   "license": "GPL-3.0",
   "dependencies": {
-    "axios": "^0.24.0",
-    "discord.js": "^13.5.0"
+    "axios": "^0.24.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
