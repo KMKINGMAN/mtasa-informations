@@ -15,7 +15,7 @@ const KINGMAN = require("mtasa-informations")
     .catch((err)=> {
         console.log(err)
     })
-    await KingClient.getAllServers("87.98.182.70")
+    await KingClient.getAllServers()
     .then((res)=> {
         console.log(res)
     })
