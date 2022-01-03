@@ -5,7 +5,7 @@
   </p>
   <br />
   <p>
-    <a href="https://discord.gg/kingmandev"><img src="https://img.shields.io/discord/222078108977594368?color=5865F2&logo=discord&logoColor=white" alt="Discord server" /></a>
+    <a href="https://discord.gg/kingmandev"><img src="https://img.shields.io/discord/776201963762221077?color=5865F2&logo=discord&logoColor=white" alt="Discord server" /></a>
     <a href="https://www.npmjs.com/package/mtasa-informations"><img src="https://img.shields.io/npm/v/mtasa-informations" alt="npm version" /></a>
   </p>
 </div>
