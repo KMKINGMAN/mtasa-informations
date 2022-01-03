@@ -1,0 +1,15 @@
+name: Discord Commits
+
+on: [push]
+
+jobs:
+  git:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Discord Commits
+      uses: Sniddl/discord-commits@v1.3
+      with:
+        webhook: ${{ secrets.WEBHOOK_URL }}
+        message: "**Click Here [{{ github.context.payload.repository.owner.name }}/{{ github.context.payload.repository.name}}]({{ github.context.payload.compare }})**"
+        embed: '{"title": "{{ commit.title }}","description": "{{ commit.description }}","url": "{{ commit.url }}","author": {"name": "{{ commit.author.name }} ({{ commit.author.username }})","icon_url": "https://avatars.githubusercontent.com/{{ commit.author.username }}"},"footer": {"text": "KINGMAN STUDIO","icon_url": "{{ github.context.payload.repository.owner.avatar_url }}"}}'
+        last-commit-only: false
