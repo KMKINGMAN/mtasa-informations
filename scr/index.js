@@ -31,7 +31,7 @@ class KINGMAN {
      */
     async getServerInfo(){
         return new Promise(async (res, rej)=> {
-            let data = await this.req.get(mta_api);
+            let data = await this.req.get(mta_api).catch(e => { return rej(e) });
             if(data.data){
                 try{
                     let Server = data.data.filter((server)=> server.ip === this.defult_data.ip && server.port === this.defult_data.port )[0]
@@ -71,7 +71,7 @@ class KINGMAN {
      */
     async getAllServers(){
         return new Promise(async(res, rej)=> {
-            let data = await this.req.get(mta_api)
+            let data = await this.req.get(mta_api).catch(e => { return rej(e) });
             if(data.data){
                 res(data.data.map(Server=> { return {
                     ip: Server.ip,
@@ -103,7 +103,7 @@ class KINGMAN {
      */
     async getServerByIp(ServerIP){
         return new Promise(async(res, rej)=> {
-            let data = await this.req.get(mta_api)
+            let data = await this.req.get(mta_api).catch(e => { return rej(e) });
             if(data.data){
                 let reg = new RegExp(ServerIP)
                 try{
@@ -145,7 +145,7 @@ class KINGMAN {
      */
     async getServerByName(Server_Name){
         return new Promise(async(res,rej)=> {
-            let data = await this.req.get(mta_api)
+            let data = await this.req.get(mta_api).catch(e => { return rej(e) });
             if(data.data){
                 let reg = new RegExp(Server_Name)
                 try {
