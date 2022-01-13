@@ -31,29 +31,34 @@ class KINGMAN {
      */
     async getServerInfo(){
         return new Promise(async (res, rej)=> {
-            let data = await this.req.get(mta_api).catch(e => { return rej(e) });
-            if(data.data){
-                try{
-                    let Server = data.data.filter((server)=> server.ip === this.defult_data.ip && server.port === this.defult_data.port )[0]
-                    if(Server){
-                        res({
-                            ip: Server.ip, 
-                            name: this.serverName(Server.name),
-                            maxplayers: Server.maxplayers,
-                            port:Server.port,
-                            password:Server.password,
-                            version: Server.version,
-                            players: Server.players
-                        })
-                    } else {
-                        rej(bace_err.INFO_ERR)
+           try {
+                let data = await this.req.get(mta_api)
+                if(data.data){
+                    try{
+                        let Server = data.data.filter((server)=> server.ip === this.defult_data.ip && server.port === this.defult_data.port )[0]
+                        if(Server){
+                            res({
+                                ip: Server.ip, 
+                                name: this.serverName(Server.name),
+                                maxplayers: Server.maxplayers,
+                                port:Server.port,
+                                password:Server.password,
+                                version: Server.version,
+                                players: Server.players
+                            })
+                        } else {
+                            rej(bace_err.INFO_ERR)
+                        }
+                    }catch{
+                        rej(bace_err.UNKNW_ERR)
                     }
-                }catch{
+                } else {
                     rej(bace_err.UNKNW_ERR)
                 }
-            } else {
-                rej(bace_err.UNKNW_ERR)
+            } catch (e) {
+                return rej(e)
             }
+
         })
     };
     /**
@@ -71,19 +76,23 @@ class KINGMAN {
      */
     async getAllServers(){
         return new Promise(async(res, rej)=> {
-            let data = await this.req.get(mta_api).catch(e => { return rej(e) });
-            if(data.data){
-                res(data.data.map(Server=> { return {
-                    ip: Server.ip,
-                    name: this.serverName(Server.name),
-                    maxplayers: Server.maxplayers,
-                    port:Server.port,
-                    password:Server.password,
-                    version: Server.version,
-                    players: Server.players
-                } }))
-            } else {
-                rej(bace_err.UNKNW_ERR)
+           try {
+                let data = await this.req.get(mta_api)
+                if(data.data){
+                    res(data.data.map(Server=> { return {
+                        ip: Server.ip,
+                        name: this.serverName(Server.name),
+                        maxplayers: Server.maxplayers,
+                        port:Server.port,
+                        password:Server.password,
+                        version: Server.version,
+                        players: Server.players
+                    } }))
+                } else {
+                    rej(bace_err.UNKNW_ERR)
+                }
+            } catch (e) {
+                return rej(e)
             }
         })
     }
@@ -103,29 +112,33 @@ class KINGMAN {
      */
     async getServerByIp(ServerIP){
         return new Promise(async(res, rej)=> {
-            let data = await this.req.get(mta_api).catch(e => { return rej(e) });
-            if(data.data){
-                let reg = new RegExp(ServerIP)
-                try{
-                    let data2 = data.data.filter((server)=> reg.test(server.ip))
-                    if(data2 && data2.length !== 0){
-                        res(data2.map(Server=> { return {
-                            ip: Server.ip,
-                            name: this.serverName(Server.name),
-                            maxplayers: Server.maxplayers,
-                            port:Server.port,
-                            password:Server.password,
-                            version: Server.version,
-                            players: Server.players
-                        } }))
-                    }else{
-                        rej(bace_err.WRONG_IP)
+            try {
+                let data = await this.req.get(mta_api)
+                if(data.data){
+                    let reg = new RegExp(ServerIP)
+                    try{
+                        let data2 = data.data.filter((server)=> reg.test(server.ip))
+                        if(data2 && data2.length !== 0){
+                            res(data2.map(Server=> { return {
+                                ip: Server.ip,
+                                name: this.serverName(Server.name),
+                                maxplayers: Server.maxplayers,
+                                port:Server.port,
+                                password:Server.password,
+                                version: Server.version,
+                                players: Server.players
+                            } }))
+                        }else{
+                            rej(bace_err.WRONG_IP)
+                        }
+                    }catch{
+                        rej(bace_err.UNKNW_ERR)
                     }
-                }catch{
+                } else {
                     rej(bace_err.UNKNW_ERR)
                 }
-            } else {
-                rej(bace_err.UNKNW_ERR)
+            } catch (e) {
+                return rej(e)
             }
         })
     }
@@ -145,29 +158,33 @@ class KINGMAN {
      */
     async getServerByName(Server_Name){
         return new Promise(async(res,rej)=> {
-            let data = await this.req.get(mta_api).catch(e => { return rej(e) });
-            if(data.data){
-                let reg = new RegExp(Server_Name)
-                try {
-                    let data2 = await data.data.filter((server)=> reg.test(server.name) === true )
-                    if(data2 && data2.length !== 0){
-                        res(data2.map(Server=> { return {
-                            ip: Server.ip,
-                            name: this.serverName(Server.name),
-                            maxplayers: Server.maxplayers,
-                            port:Server.port,
-                            password:Server.password,
-                            version: Server.version,
-                            players: Server.players
-                        } }))
-                    } else {
-                        rej(bace_err.INFO_ERR)
+            try {
+                let data = await this.req.get(mta_api)
+                if(data.data){
+                    let reg = new RegExp(Server_Name)
+                    try {
+                        let data2 = await data.data.filter((server)=> reg.test(server.name) === true )
+                        if(data2 && data2.length !== 0){
+                            res(data2.map(Server=> { return {
+                                ip: Server.ip,
+                                name: this.serverName(Server.name),
+                                maxplayers: Server.maxplayers,
+                                port:Server.port,
+                                password:Server.password,
+                                version: Server.version,
+                                players: Server.players
+                            } }))
+                        } else {
+                            rej(bace_err.INFO_ERR)
+                        }
+                    } catch (error) {
+                        rej(bace_err.UNKNW_ERR)
                     }
-                } catch (error) {
+                } else {
                     rej(bace_err.UNKNW_ERR)
                 }
-            } else {
-                rej(bace_err.UNKNW_ERR)
+            } catch (e) {
+                return rej(e)
             }
         })
     }
